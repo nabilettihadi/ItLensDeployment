@@ -19,7 +19,9 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    sh 'mvn sonar:sonar -Dsonar.host.url=http://<SONARQUBE_URL> -Dsonar.login=<SONARQUBE_TOKEN>'
+                    withCredentials([string(credentialsId: 'sonarqube-token', variable: 'SONAR_TOKEN')]) {
+                        sh "mvn sonar:sonar -Dsonar.host.url=http://<SONARQUBE_URL> -Dsonar.login=$SONAR_TOKEN"
+                    }
                 }
             }
         }
