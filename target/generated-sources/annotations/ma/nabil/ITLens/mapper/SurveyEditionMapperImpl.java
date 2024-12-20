@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-26T15:08:33+0100",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
+    date = "2024-12-20T16:41:16+0100",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.41.0.v20241217-1506, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 @Component
 public class SurveyEditionMapperImpl implements SurveyEditionMapper {
@@ -32,8 +32,8 @@ public class SurveyEditionMapperImpl implements SurveyEditionMapper {
 
         surveyEditionDTO.setSurveyId( surveyEditionSurveyId( surveyEdition ) );
         surveyEditionDTO.setSubjects( subjectListToSubjectDTOList( surveyEdition.getSubjects() ) );
-        surveyEditionDTO.setId( surveyEdition.getId() );
         surveyEditionDTO.setCreationDate( surveyEdition.getCreationDate() );
+        surveyEditionDTO.setId( surveyEdition.getId() );
         surveyEditionDTO.setStartDate( surveyEdition.getStartDate() );
         surveyEditionDTO.setYear( surveyEdition.getYear() );
 
@@ -50,8 +50,8 @@ public class SurveyEditionMapperImpl implements SurveyEditionMapper {
 
         surveyEdition.setSurvey( surveyEditionDTOToSurvey( dto ) );
         surveyEdition.setSubjects( subjectDTOListToSubjectList( dto.getSubjects() ) );
-        surveyEdition.setId( dto.getId() );
         surveyEdition.setCreationDate( dto.getCreationDate() );
+        surveyEdition.setId( dto.getId() );
         surveyEdition.setStartDate( dto.getStartDate() );
         surveyEdition.setYear( dto.getYear() );
 

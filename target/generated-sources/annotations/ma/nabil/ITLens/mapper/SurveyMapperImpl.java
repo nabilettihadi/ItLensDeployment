@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-11-26T15:08:33+0100",
-    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
+    date = "2024-12-20T16:41:16+0100",
+    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.41.0.v20241217-1506, environment: Java 17.0.13 (Eclipse Adoptium)"
 )
 @Component
 public class SurveyMapperImpl implements SurveyMapper {
@@ -33,9 +33,9 @@ public class SurveyMapperImpl implements SurveyMapper {
 
         surveyDTO.setOwner( ownerMapper.toDto( survey.getOwner() ) );
         surveyDTO.setEditions( surveyEditionListToSurveyEditionDTOList( survey.getEditions() ) );
+        surveyDTO.setDescription( survey.getDescription() );
         surveyDTO.setId( survey.getId() );
         surveyDTO.setTitle( survey.getTitle() );
-        surveyDTO.setDescription( survey.getDescription() );
 
         return surveyDTO;
     }
@@ -50,9 +50,9 @@ public class SurveyMapperImpl implements SurveyMapper {
 
         survey.setOwner( ownerMapper.toEntity( dto.getOwner() ) );
         survey.setEditions( surveyEditionDTOListToSurveyEditionList( dto.getEditions() ) );
+        survey.setDescription( dto.getDescription() );
         survey.setId( dto.getId() );
         survey.setTitle( dto.getTitle() );
-        survey.setDescription( dto.getDescription() );
 
         return survey;
     }
