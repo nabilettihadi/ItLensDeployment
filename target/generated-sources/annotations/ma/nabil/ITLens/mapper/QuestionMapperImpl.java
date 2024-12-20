@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-20T16:41:16+0100",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.41.0.v20241217-1506, environment: Java 17.0.13 (Eclipse Adoptium)"
+    date = "2024-12-20T19:50:13+0100",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
 )
 @Component
 public class QuestionMapperImpl implements QuestionMapper {
@@ -32,10 +32,10 @@ public class QuestionMapperImpl implements QuestionMapper {
 
         questionDTO.setSubjectId( questionSubjectId( question ) );
         questionDTO.setAnswers( answerListToAnswerDTOList( question.getAnswers() ) );
-        questionDTO.setAnswerCount( question.getAnswerCount() );
         questionDTO.setId( question.getId() );
         questionDTO.setText( question.getText() );
         questionDTO.setType( question.getType() );
+        questionDTO.setAnswerCount( question.getAnswerCount() );
 
         return questionDTO;
     }
@@ -50,10 +50,10 @@ public class QuestionMapperImpl implements QuestionMapper {
 
         question.setSubject( questionDTOToSubject( dto ) );
         question.setAnswers( answerDTOListToAnswerList( dto.getAnswers() ) );
-        question.setAnswerCount( dto.getAnswerCount() );
         question.setId( dto.getId() );
         question.setText( dto.getText() );
         question.setType( dto.getType() );
+        question.setAnswerCount( dto.getAnswerCount() );
 
         return question;
     }

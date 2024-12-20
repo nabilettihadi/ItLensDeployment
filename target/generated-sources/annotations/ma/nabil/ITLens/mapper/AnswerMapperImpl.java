@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-12-20T16:41:16+0100",
-    comments = "version: 1.5.5.Final, compiler: Eclipse JDT (IDE) 3.41.0.v20241217-1506, environment: Java 17.0.13 (Eclipse Adoptium)"
+    date = "2024-12-20T19:50:14+0100",
+    comments = "version: 1.5.5.Final, compiler: javac, environment: Java 22.0.2 (Oracle Corporation)"
 )
 @Component
 public class AnswerMapperImpl implements AnswerMapper {
@@ -24,9 +24,9 @@ public class AnswerMapperImpl implements AnswerMapper {
 
         answerDTO.setQuestionId( answerQuestionId( answer ) );
         answerDTO.setId( answer.getId() );
-        answerDTO.setPercentage( answer.getPercentage() );
-        answerDTO.setSelectionCount( answer.getSelectionCount() );
         answerDTO.setText( answer.getText() );
+        answerDTO.setSelectionCount( answer.getSelectionCount() );
+        answerDTO.setPercentage( answer.getPercentage() );
 
         return answerDTO;
     }
@@ -41,9 +41,9 @@ public class AnswerMapperImpl implements AnswerMapper {
 
         answer.setQuestion( answerDTOToQuestion( dto ) );
         answer.setId( dto.getId() );
-        answer.setPercentage( dto.getPercentage() );
-        answer.setSelectionCount( dto.getSelectionCount() );
         answer.setText( dto.getText() );
+        answer.setSelectionCount( dto.getSelectionCount() );
+        answer.setPercentage( dto.getPercentage() );
 
         return answer;
     }
