@@ -2,19 +2,21 @@ pipeline {
     agent any
     
     environment {
+        MAVEN_HOME = 'C:\\apache-maven-3.8.8'
+        PATH = "${MAVEN_HOME}\\bin;${env.PATH}"
         DOCKER_CREDENTIALS = credentials('docker-hub-credentials')
     }
 
     stages {
         stage('Build') {
             steps {
-                bat 'mvn clean package -DskipTests'
+                bat "${MAVEN_HOME}\\bin\\mvn clean package -DskipTests"
             }
         }
         
         stage('Test') {
             steps {
-                bat 'mvn test'
+                bat "${MAVEN_HOME}\\bin\\mvn test"
             }
             post {
                 always {
@@ -26,7 +28,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    bat 'mvn sonar:sonar'
+                    bat "${MAVEN_HOME}\\bin\\mvn sonar:sonar"
                 }
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
@@ -42,7 +44,9 @@ pipeline {
         
         stage('Docker Login') {
             steps {
-                bat 'echo %DOCKER_CREDENTIALS_PSW%| docker login -u %DOCKER_CREDENTIALS_USR% --password-stdin'
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    bat 'echo %DOCKER_PASS%| docker login -u %DOCKER_USER% --password-stdin'
+                }
             }
         }
         
@@ -55,7 +59,9 @@ pipeline {
     
     post {
         always {
-            bat 'docker logout'
+            node('any') {
+                bat 'docker logout'
+            }
         }
         success {
             echo 'Pipeline completed successfully!'
